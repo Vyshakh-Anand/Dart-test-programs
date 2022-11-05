@@ -5,8 +5,7 @@ void main()
   stdout.writeln("Enter the numbers : ");
   a = double.parse(stdin.readLineSync()!);
   b = double.parse(stdin.readLineSync()!);
-  double c = a+b ;
+  double c = a+b;
   c.toStringAsFixed(2);
-  print("$a + $b = $c ");
-  
+  print("$a + $b = $c "); 
 }
