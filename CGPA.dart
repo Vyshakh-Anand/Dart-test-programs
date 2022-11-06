@@ -1,18 +1,34 @@
 import 'dart:ffi';
 import 'dart:io';
-
 class Semester4
 {
   int c_DCP=4,c_OOP=5,c_CA=4,c_DBMS=4,c_EVDS=3,c_DCPlab=3,c_OOPlab=3,c_DBMSlab=3;
-SEM4()
-{
-  
-
+  num tc=0;
+  Semester4()
+  {
+  tc= c_DCP+c_OOP+c_CA+c_DBMS+c_EVDS+c_DCPlab+c_OOPlab+c_DBMSlab;
+  }
+  SGPA(List<int> GradePoint)
+  {
+    num Gsum=0;
+    double sgpa;
+    for(int i=0;i<GradePoint.length;i++)
+    {
+      Gsum=Gsum+GradePoint[i];
+    }
+    sgpa=(Gsum/tc);
+    String Ssgpa=sgpa.toStringAsFixed(2);
+    print("Your SGPA score for SEMESTER 4 : $Ssgpa");
+  }
 }
-}
-class Calculation
+class Calculation 
 {
   int i=0;
+  List<int> GPS=[];
+List<int> retGPS()
+  {
+    return GPS;
+  }
 int convertToGP(String grade)
 {
   int GP; 
@@ -31,27 +47,19 @@ switch (grade) {
   break;
   default: GP=0;
 }
- return GP;
+return GP;
 }
-  List<int> addtolst(int gp)
+ List<int> addtolst(int gp)
 {
-  List<int> GPS=[10];
-  GPS[i]=gp;
-  i++;
-  print("$i");
+  GPS.add(gp);
  return GPS;
 }
-void display(List<int> GPS)
+void display()
 {
-  for(int i=0;i<=GPS.length;i++)
-  {
-    print(GPS[i]);
-  }
+ print(GPS);
 }
   
 }
-
-
 main()
 {
   var s4= new Semester4();
@@ -62,29 +70,30 @@ main()
     stdout.writeln("Enter the grades \n");
     stdout.write("DCP : "); String g =stdin.readLineSync()!;
     int gp=Cal.convertToGP(g);
-    List<int>GPS=Cal.addtolst(gp);
+    List<int>GPS=Cal.addtolst(gp*s4.c_DCP);
     stdout.write("OOP : "); g =stdin.readLineSync()!;
     gp=Cal.convertToGP(g);
-    GPS=Cal.addtolst(gp);
+    GPS=Cal.addtolst(gp*s4.c_OOP);
     stdout.write("CA : "); g =stdin.readLineSync()!;
     gp=Cal.convertToGP(g);
-    GPS=Cal.addtolst(gp);
+    GPS=Cal.addtolst(gp*s4.c_CA);
     stdout.write("DBMS: "); g =stdin.readLineSync()!;
     gp=Cal.convertToGP(g);
-    GPS=Cal.addtolst(gp);
+    GPS=Cal.addtolst(gp*s4.c_DBMS);
     stdout.write("EVDS : "); g =stdin.readLineSync()!;
     gp=Cal.convertToGP(g);
-    GPS=Cal.addtolst(gp);
+    GPS=Cal.addtolst(gp*s4.c_EVDS);
     stdout.write("DCP Lab : "); g =stdin.readLineSync()!;
     gp=Cal.convertToGP(g);
-    GPS=Cal.addtolst(gp);
+    GPS=Cal.addtolst(gp*s4.c_DCPlab);
     stdout.write("OOP Lab : "); g =stdin.readLineSync()!;
     gp=Cal.convertToGP(g);
-    GPS=Cal.addtolst(gp);
+    GPS=Cal.addtolst(gp*s4.c_OOPlab);
     stdout.write("Dbms lab : "); g =stdin.readLineSync()!;
     gp=Cal.convertToGP(g);
-    GPS=Cal.addtolst(gp);
-    Cal.display(GPS);
+    GPS=Cal.addtolst(gp*s4.c_DBMSlab);
+    s4.SGPA(GPS);
+    Cal.display();
 
 
   }while(flag=="Y"||flag=="y");
