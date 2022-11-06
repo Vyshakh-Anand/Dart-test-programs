@@ -4,6 +4,7 @@ import 'dart:io';
 c_Subject Name = Credit score of that subject
 tc = total credit of that sum
 */
+
 class Semester6
 {
   int c_MCS=5,c_CN=4,c_SDP=5,c_MC=5,c_NIM=5,c_ST=5,c_MCSlab=3,c_SDPlab=3,c_PS=10;
@@ -88,6 +89,48 @@ class Semester3
     print("Your SGPA score for SEMESTER 3 : $Ssgpa");
   }
 }
+class Semester2
+{
+  int c_EN=3,c_MATH=6,c_PHY=3,c_CHEM=3,c_GRAPH=0,c_HPE=2,c_WP=0,c_CF=4,c_Slab=0;
+  num tc=0;
+  Semester2()
+  {
+    tc=c_EN+c_MATH+c_PHY+c_CHEM+c_GRAPH+c_HPE+c_WP+c_CF+c_Slab;
+  }
+    SGPA(List<int> GradePoint)
+  {
+    num Gsum=0;
+    double sgpa;
+    for(int i=0;i<GradePoint.length;i++)
+    {
+      Gsum=Gsum+GradePoint[i];
+    }
+    sgpa=(Gsum/tc);
+    String Ssgpa=sgpa.toStringAsFixed(2);
+    print("Your SGPA score for SEMESTER 6 : $Ssgpa");
+  }
+}
+class Semester1
+{
+  int c_EN=3,c_MATH=6,c_PHY=3,c_CHEM=3,c_C=4,c_GRPAH=5,c_WP=3,c_Slab=3,c_Clab=2,c_LS=2;
+  num tc=0;
+  Semester1()
+  {
+    tc=c_EN+c_MATH+c_PHY+c_CHEM+c_C+c_GRPAH+c_WP+c_Slab+c_Clab+c_LS;
+  }
+    SGPA(List<int> GradePoint)
+  {
+    num Gsum=0;
+    double sgpa;
+    for(int i=0;i<GradePoint.length;i++)
+    {
+      Gsum=Gsum+GradePoint[i];
+    }
+    sgpa=(Gsum/tc);
+    String Ssgpa=sgpa.toStringAsFixed(2);
+    print("Your SGPA score for SEMESTER 6 : $Ssgpa");
+  }
+}
 class Calculation 
 {
   int i=0;
@@ -132,14 +175,75 @@ String display()
 main()
 {
   var Cal= new Calculation();
+  int CC=0;//CGPA CALCULATOR STATUS
+  stdout.write("SELECT THE OPTIONS \n 1.SGPA CALCULATOR \n 2.CGPA CALCULATOR");
+  String choice=stdin.readLineSync()!;
+  switch(choice){
+  case "1":
   String flag="0";
-  do{
+    do{
   stdout.write("Enter the sem you want calculate SGPA OF : \n1. SEM 1\t 2.SEM 2\t 3. SEM 4\t SEM 5\t SEM 6\n");
   String sem =stdin.readLineSync()!;
   switch (sem) {
     case  "1":
+     var s1= new Semester1();
+    stdout.writeln("Enter the grades \n");
+    stdout.write("English : "); String g =stdin.readLineSync()!;
+    int gp=Cal.convertToGP(g);
+    List<int>GPS=Cal.addtolst(gp*s1.c_EN);
+    stdout.write("Maths : "); g =stdin.readLineSync()!;
+    gp=Cal.convertToGP(g);
+    GPS=Cal.addtolst(gp*s1.c_MATH);
+    stdout.write("Physics : "); g =stdin.readLineSync()!;
+    gp=Cal.convertToGP(g);
+    GPS=Cal.addtolst(gp*s1.c_PHY);
+    stdout.write("Chemistry : "); g =stdin.readLineSync()!;
+    gp=Cal.convertToGP(g);
+    GPS=Cal.addtolst(gp*s1.c_CHEM);
+    stdout.write("Programming in C : "); g =stdin.readLineSync()!;
+    gp=Cal.convertToGP(g);
+    GPS=Cal.addtolst(gp*s1.c_C);
+    stdout.write("Engineering Graphincs : "); g =stdin.readLineSync()!;
+    gp=Cal.convertToGP(g);
+    GPS=Cal.addtolst(gp*s1.c_GRPAH);
+    stdout.write("Workshop Practice : "); g =stdin.readLineSync()!;
+    gp=Cal.convertToGP(g);
+    GPS=Cal.addtolst(gp*s1.c_WP);
+    stdout.write("Science Lab : "); g =stdin.readLineSync()!;
+    gp=Cal.convertToGP(g);
+    GPS=Cal.addtolst(gp*s1.c_Slab);
+    stdout.write("Life Skill : "); g =stdin.readLineSync()!;
+    gp=Cal.convertToGP(g);
+    GPS=Cal.addtolst(gp*s1.c_LS);
+    s1.SGPA(GPS);
+    flag=Cal.display();
     break;
     case "2":
+    var s2= new Semester2();
+    stdout.writeln("Enter the grades \n");
+    stdout.write("English : "); String g =stdin.readLineSync()!;
+    int gp=Cal.convertToGP(g);
+    List<int>GPS=Cal.addtolst(gp*s2.c_EN);
+    stdout.write("Maths : "); g =stdin.readLineSync()!;
+    gp=Cal.convertToGP(g);
+    GPS=Cal.addtolst(gp*s2.c_MATH);
+    stdout.write("Physics : "); g =stdin.readLineSync()!;
+    gp=Cal.convertToGP(g);
+    GPS=Cal.addtolst(gp*s2.c_PHY);
+    stdout.write("Chemistry : "); g =stdin.readLineSync()!;
+    gp=Cal.convertToGP(g);
+    GPS=Cal.addtolst(gp*s2.c_CHEM);
+    stdout.write("Health and Physical Education : "); g =stdin.readLineSync()!;
+    gp=Cal.convertToGP(g);
+    GPS=Cal.addtolst(gp*s2.c_HPE);
+    stdout.write("Computer Fundamentals : "); g =stdin.readLineSync()!;
+    gp=Cal.convertToGP(g);
+    GPS=Cal.addtolst(gp*s2.c_CF);
+    stdout.write("Science Lab : "); g =stdin.readLineSync()!;
+    gp=Cal.convertToGP(g);
+    GPS=Cal.addtolst(gp*s2.c_Slab);
+    s2.SGPA(GPS);
+    flag=Cal.display();
     break;
     case "3": 
      var s3= new Semester3();
@@ -276,4 +380,15 @@ main()
     default : print("Invalid Input !");
 }
 }while(flag=="Y"||flag=="y");
+break;
+case "2":
+String flag="0";
+do{
+  print("YOU SUCK !");
+  CC=1;
+}while(flag=="Y"||flag=="y");
+break;
+default:
+print("Invalid Input!"); 
+}
 }
